@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "disney-plus-clone",
   "version": "0.1.0",
   "private": true,
@@ -41,9 +40,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-=======
-  "dependencies": {
-    "bootstrap": "^5.2.0"
->>>>>>> 45dcacae15e6eaced10732b7acd61a7d7f831757
   }
 }

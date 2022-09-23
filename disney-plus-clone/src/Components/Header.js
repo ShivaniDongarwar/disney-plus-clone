@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Home from "./Home";
+
 const Header = () => {
   return (
     <>
@@ -8,11 +8,11 @@ const Header = () => {
         <Logo src="/Disney Plus/images/logo.svg" />
         <NavMenu>
           <a>
-            <img src="/Disney Plus/images/home-icon.svg" />
+            <img src="/Disney Plus/images/home-icon.svg" alt="" />
             <span>HOME</span>
           </a>
           <a>
-            <img src="/Disney Plus/images/search-icon.svg" />
+            <img src="/Disney Plus/images/search-icon.svg"  />
             <span>SEARCH</span>
           </a>
           <a>
@@ -34,7 +34,7 @@ const Header = () => {
         </NavMenu>
         <UserImage src=" " />
       </Nav>
-      <Home />
+
     </>
   );
 };
@@ -58,6 +58,7 @@ const NavMenu = styled.div`
   flex: 1;
   margin-left: 25px;
   align-item: centre;
+  color:white;
   a {
     display: flex;
     align-item: centre;

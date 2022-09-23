@@ -17,10 +17,10 @@ function ImgSlider() {
   return (
     <Carousel {...settings}>
       <Wrap>
-        <img src="/Disney Plus/images/slider-badging.jpg" />
+        <img src="/Disney Plus/images/slider-badging.jpg" alt=""/>
       </Wrap>
       <Wrap>
-        <img src="/Disney Plus/images/slider-badag.jpg" />
+        <img src="/Disney Plus/images/slider-badag.jpg" alt=""/>
       </Wrap>
     </Carousel>
   );
@@ -30,8 +30,10 @@ export default ImgSlider;
 
 const Carousel = styled(Slider)`
   margin-top: 20px;
-  width: 95%;
-  height: 50%;
+  width: 85%;
+  height: 80%;
+  overflow: visible;
+
   ul li button {
     &:before {
       font-size: 10px;
@@ -45,7 +47,7 @@ const Carousel = styled(Slider)`
     overflow: visible;
   }
   button {
-    z-index: -1;
+    z-index: 1;
   }
 `;
 

@@ -1,35 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 function Movies() {
+  const movies = useSelector((state) => {
+    return state.movieReducer.movies;
+  });
+
   return (
     <Container>
       <h4>Recommended for You</h4>
       <Content>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
-        <Wrap>
-          <img src="/Disney Plus/images/viewers-disney.png" alt="" />
-        </Wrap>
+        {movies &&
+          movies.map((ele) => (
+            <Wrap key={ele.id}>
+              <img src={ele.cardImg} />
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
@@ -38,16 +25,16 @@ function Movies() {
 export default Movies;
 
 const Container = styled.div`
- color:white;`;
+  color: white;
+`;
 const Content = styled.div`
   display: grid;
   grid-gap: 25px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-
 `;
 const Wrap = styled.div`
   border-radius: 10px;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
   border: 3px solid rgba(249, 249, 249, 0.1);
   box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,

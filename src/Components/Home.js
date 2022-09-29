@@ -5,12 +5,16 @@ import Movies from "./Movies";
 import Viewers from "./Viewers";
 import { useEffect } from "react";
 import Service from "../Service/Service";
+import { useDispatch } from "react-redux/es/exports";
+import { movieActions } from "../features/Movies/movieSlice";
 
 const Home = () => {
+  const dispatch=useDispatch();
   const getAllData = async () => {
     const data = await Service.getAllData();
     let tempMovies = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    console.log(tempMovies);
+    console.log("tempMovies===>",tempMovies);
+  dispatch(movieActions.addMovies(tempMovies))
   };
   useEffect(() => {
     getAllData();

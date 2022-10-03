@@ -1,4 +1,4 @@
-import { db } from "../Firebase";
+import { db, provider, auth } from "../Firebase";
 import {
   collection,
   getDocs,
@@ -8,6 +8,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import { signInWithPopup, signOut,onAuthStateChanged  } from "firebase/auth";
 //connect service file to the  firebase database or create a refrence with firebase database named Information
 const firebaseRef = collection(db, "movies");
 class dataService {
@@ -29,5 +30,14 @@ class dataService {
     const dataAvailable = doc(db, "movies", id);
     return getDoc(dataAvailable);
   };
+  signIn = () => {
+    return signInWithPopup(auth, provider);
+  };
+  signOut = () => {
+    return signOut(auth);
+  };
+  onStateChange=(user)=>{
+    return onAuthStateChanged (auth,user);
+  }
 }
 export default new dataService();

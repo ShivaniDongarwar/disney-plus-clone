@@ -1,37 +1,59 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import Service from "../Service/Service";
 
 function Detail() {
+  const [movieInfo, setmovieInfo] = useState({});
+  const { id } = useParams();
+
+  const getMovieData = async () => {
+    Service.getSingleData(id)
+      .then((res) => {
+        console.log("sd===>", res.data());
+        setmovieInfo(res.data());
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  useEffect(() => {
+    getMovieData();
+  }, []);
+  console.log("movieInfo===>", movieInfo);
+  // let temp = [movieInfo];
   return (
     <Container>
-      <Background>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg" />
-      </Background>
-      <ImageTitle>
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" />
-      </ImageTitle>
-      <Controls>
-        <PlayButton>
-          <img src="/Disney Plus/images/play-icon-black.png" />
-          <span>PLAY</span>
-        </PlayButton>
-        <TrailerButton>
-          <img src="/Disney Plus/images/play-icon-white.png" />
-          <span>TRAILER</span>
-        </TrailerButton>
-        <AddButton>
-          <span>+</span>
-        </AddButton>
-        <GroupWatchButton>
-          <img src="/Disney Plus/images/group-icon.png" />
-        </GroupWatchButton>
-      </Controls>
-      <SubTitle>2018 • 7m • Family, Fantasy, Kids, Animation</SubTitle>
-      <Description>
-        A Chinese mom who’s sad when her grown son leaves home gets another
-        chance at motherhood when one of her dumplings springs to life. But she
-        finds that nothing stays cute and small forever.
-      </Description>
+      {movieInfo && (
+        <>
+          {" "}
+          <Background>
+            <img src={movieInfo.backgroundImg} />
+          </Background>
+          <ImageTitle>
+            <img src={movieInfo.titleImg} />
+          </ImageTitle>
+          <Controls>
+            <PlayButton>
+              <img src="/Disney Plus/images/play-icon-black.png" alt=""  />
+              <span>PLAY</span>
+            </PlayButton>
+            <TrailerButton>
+              <img src="/Disney Plus/images/play-icon-white.png" alt="" />
+              <span>TRAILER</span>
+            </TrailerButton>
+            <AddButton>
+              <span>+</span>
+            </AddButton>
+            <GroupWatchButton>
+              <img src="/Disney Plus/images/group-icon.png" alt="" />
+            </GroupWatchButton>
+          </Controls>
+          <SubTitle>{movieInfo.subTitle}</SubTitle>
+          <Description>{movieInfo.description}</Description>
+        </>
+      )}
     </Container>
   );
 }
@@ -112,16 +134,16 @@ const GroupWatchButton = styled(AddButton)`
   background: rgb(0, 0, 0);
 `;
 const SubTitle = styled.div`
-    color: rgb(249, 249, 249);
-    font-size: 15px;
-    min-height: 20px;
-    margin-top: 26px;
-`
+  color: rgb(249, 249, 249);
+  font-size: 15px;
+  min-height: 20px;
+  margin-top: 26px;
+`;
 
 const Description = styled.div`
-    line-height: 1.4;
-    font-size: 20px;
-    margin-top: 16px;
-    color: rgb(249, 249, 249);
-    max-width: 760px;
-`
+  line-height: 1.4;
+  font-size: 20px;
+  margin-top: 16px;
+  color: rgb(249, 249, 249);
+  max-width: 760px;
+`;

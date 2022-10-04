@@ -116,6 +116,7 @@ const Nav = styled.nav`
   padding: 0 36px;
   z-index: 1;
   overflow-x: hidden;
+
 `;
 const Logo = styled.img`
   width: 80px;
